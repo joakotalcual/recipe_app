@@ -53,7 +53,6 @@ class RecipeBundelCard extends StatelessWidget {
                       iconSrc: "assets/icons/pot.svg",
                       text: "${recipeBundle.recipes} Recipes"
                     ),
-                    SizedBox(height: defaultSize * 0.2),
                     buildInfRow(
                       defaultSize,
                       iconSrc: "assets/icons/chef.svg",
