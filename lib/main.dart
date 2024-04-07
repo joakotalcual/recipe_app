@@ -16,9 +16,10 @@ class MyApp extends StatelessWidget {
       title: 'Recipe App',
       theme: ThemeData(
         //
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(color: Colors.white, elevation: 0),
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(background: Colors.white),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: HomeScreen(),
     );

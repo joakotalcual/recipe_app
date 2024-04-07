@@ -2,18 +2,18 @@
 import 'package:flutter/material.dart';
 
 class RecipeBundle {
-  final int id = 0, chefs = 0, recipes = 0;
-  final String title ='', description = '', imageSrc = '';
-  final Color color = Colors.white;
+  final int id, chefs, recipes;
+  final String title, description, imageSrc;
+  final Color color;
 
   RecipeBundle({
-    required id,
-    required chefs,
-    required recipes,
-    required title,
-    required description,
-    required imageSrc,
-    required color
+    required this.id,
+    required this.chefs,
+    required this.recipes,
+    required this.title,
+    required this.description,
+    required this.imageSrc,
+    required this.color
   });
 
 }
