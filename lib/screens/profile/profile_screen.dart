@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:recipe_app/components/my_bottom_nav_bar.dart';
 import 'package:recipe_app/constants.dart';
-import 'package:recipe_app/screens/home/components/body.dart';
+import 'package:recipe_app/screens/profile/components/body.dart';
 import 'package:recipe_app/size_config.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -22,7 +21,14 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: kPrimaryColor,
       leading: SizedBox(),
       centerTitle: true,
-      title: Text("Profile"),
+      title: Text(
+        "Profile",
+        style: TextStyle(
+              color: Colors.white,
+              fontSize: SizeConfig.defaultSize * 1.1,
+              fontWeight: FontWeight.bold,
+            ),
+      ),
       actions: <Widget>[
         TextButton(
           onPressed: () {},
@@ -30,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
             "Edit",
             style: TextStyle(
               color: Colors.white,
-              fontSize: SizeConfig.defaultSize * 1.6,
+              fontSize: SizeConfig.defaultSize * 1.1,
               fontWeight: FontWeight.bold,
             ),
           ),

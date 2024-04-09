@@ -60,15 +60,28 @@ class NoFound extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       child: Center(
-        child: Text(
-          "NO FOUND",
-          style: TextStyle(
-            color: Colors.red,
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
-          ),
+        child: Column(
+          children: <Widget>[
+            const Text(
+              "NO FOUND",
+              style: TextStyle(
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
+              },
+              child: Icon(Icons.backspace_outlined),
+            ),
+          ],
         ),
       ),
     );
