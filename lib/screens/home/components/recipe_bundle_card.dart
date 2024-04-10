@@ -4,20 +4,26 @@ import 'package:recipe_app/models/recipe_bundel.dart';
 import 'package:recipe_app/size_config.dart';
 
 class RecipeBundelCard extends StatelessWidget {
-  final RecipeBundle recipeBundle;
+  final RecipeBundle? recipeBundle;
   final VoidCallback press;
 
   const RecipeBundelCard({required this.recipeBundle, required this.press, super.key});
 
   @override
   Widget build(BuildContext context) {
+    print('ACA ES EL RECIPEBUNDEL CARD');
 
     double defaultSize = SizeConfig.defaultSize;
+    if (recipeBundle == null) {
+      return const Center(
+        child: CircularProgressIndicator(), // Manejo de carga si no hay datos
+      );
+    }
     return GestureDetector(
       onTap: press,
       child: Container(
         decoration: BoxDecoration(
-          color: recipeBundle.color,
+          color: recipeBundle!.color,
           borderRadius: BorderRadius.circular(defaultSize * 1.8),
         ),
         child: Row(
@@ -30,7 +36,7 @@ class RecipeBundelCard extends StatelessWidget {
                   children: <Widget>[
                     const Spacer(),
                     Text(
-                      recipeBundle.title,
+                      recipeBundle!.title,
                       style: TextStyle(
                         fontSize: defaultSize * 0.8,
                         color: Colors.white,
@@ -40,7 +46,7 @@ class RecipeBundelCard extends StatelessWidget {
                     ),
                     SizedBox(height: defaultSize * 0.5), //5
                     Text(
-                      recipeBundle.description,
+                      recipeBundle!.description,
                       style: const TextStyle(
                         color: Colors.white54
                       ),
@@ -51,12 +57,12 @@ class RecipeBundelCard extends StatelessWidget {
                     buildInfRow(
                       defaultSize,
                       iconSrc: "assets/icons/pot.svg",
-                      text: "${recipeBundle.recipes} Recipes"
+                      text: "${recipeBundle!.recipes} Recipes"
                     ),
                     buildInfRow(
                       defaultSize,
                       iconSrc: "assets/icons/chef.svg",
-                      text: "${recipeBundle.chefs} Chefs"
+                      text: "${recipeBundle!.chefs} Chefs"
                     ),
                     const Spacer(),
                   ],
@@ -67,7 +73,7 @@ class RecipeBundelCard extends StatelessWidget {
             AspectRatio(
               aspectRatio: 0.71,
               child: Image.asset(
-                recipeBundle.imageSrc,
+                recipeBundle!.imageSrc,
                 fit: BoxFit.cover,
                 alignment: Alignment.centerLeft,
               ),

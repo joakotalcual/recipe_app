@@ -50,7 +50,7 @@ class NavItems extends ChangeNotifier {
     NavItem(
       id: 5,
       icon: "assets/icons/user.svg",
-      destination: ProfileScreen(),
+      destination: const ProfileScreen(),
     ),
   ];
 }
@@ -76,10 +76,10 @@ class NoFound extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               },
-              child: Icon(Icons.backspace_outlined),
+              child: const Icon(Icons.back_hand),
             ),
           ],
         ),

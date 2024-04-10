@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/screens/profile/components/info.dart';
 import 'package:recipe_app/screens/profile/components/profile_menu_item.dart';
+import 'package:recipe_app/screens/recipe/add_recipe_screen.dart';
 import 'package:recipe_app/size_config.dart';
 
 class Body extends StatelessWidget {
@@ -20,7 +21,11 @@ class Body extends StatelessWidget {
           ProfileMenuItem(
             iconSrc: "assets/icons/bookmark_fill.svg",
             title: "Saved Recipes",
-            press: (){},//HACER EL BACKEND
+            press: () async{
+              print("PRESIONE");
+              await Navigator.push(context, MaterialPageRoute(builder: (context) => const AddRecipe()),);
+              
+            },//HACER EL BACKEND
           ),
           ProfileMenuItem(
             iconSrc: "assets/icons/chef_color.svg",

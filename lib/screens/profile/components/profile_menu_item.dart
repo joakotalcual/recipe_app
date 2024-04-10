@@ -18,7 +18,7 @@ class ProfileMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
   double defaultSize = SizeConfig.defaultSize;
     return InkWell(
-      onTap: () {},
+      onTap: press,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: defaultSize * 1,

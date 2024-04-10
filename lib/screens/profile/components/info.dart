@@ -14,6 +14,7 @@ class Info extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
+
     return SizedBox(
       height: defaultSize * 16, //160
       child: Stack(
