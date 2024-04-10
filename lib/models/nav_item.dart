@@ -2,38 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/screens/home/home_screen.dart';
 import 'package:recipe_app/screens/profile/profile_screen.dart';
 
+// Clase NavItem que representa un elemento de navegación en la barra de navegación inferior
 class NavItem {
-  final int id;
-  final String icon;
-  final Widget destination;
+  final int id; // Identificador del elemento
+  final String icon; // Icono del elemento
+  final Widget destination; // Destino del elemento
 
-  NavItem({required this.id, required this.icon, this.destination = const NoFound()});
+  NavItem({required this.id, required this.icon, this.destination = const NoFound()}); // Constructor
 
-// If there is no destination then it help us
+  // Método para verificar si hay un destino válido para el elemento
   bool destinationChecker() {
-    if (destination != null) {
-      return true;
+    if (destination != null) { // Si hay un destino
+      return true; // Devolver verdadero
     }
-    return false;
+    return false; // De lo contrario, devolver falso
   }
 }
 
-// If we made any changes here Provider package rebuid those widget those use this NavItems
+// Clase NavItems que gestiona los elementos de navegación en la barra de navegación inferior
 class NavItems extends ChangeNotifier {
-  // By default first one is selected
-  int selectedIndex = 0;
+  int selectedIndex = 0; // Índice seleccionado por defecto
 
+  // Método para cambiar el índice de navegación
   void changeNavIndex({required int index}) {
-    selectedIndex = index;
-    // if any changes made it notify widgets that use the value
-    notifyListeners();
+    selectedIndex = index; // Establecer el nuevo índice seleccionado
+    notifyListeners(); // Notificar a los widgets que usan el valor que ha cambiado
   }
 
+  // Lista de elementos de navegación
   List<NavItem> items = [
     NavItem(
       id: 1,
       icon: "assets/icons/home.svg",
-      destination: HomeScreen(),
+      destination: HomeScreen(), // Destino: pantalla de inicio
     ),
     NavItem(
       id: 2,
@@ -50,11 +51,12 @@ class NavItems extends ChangeNotifier {
     NavItem(
       id: 5,
       icon: "assets/icons/user.svg",
-      destination: const ProfileScreen(),
+      destination: const ProfileScreen(), // Destino: pantalla de perfil
     ),
   ];
 }
 
+// Clase NoFound que muestra un mensaje de error cuando no se encuentra el destino
 class NoFound extends StatelessWidget {
   const NoFound({super.key,});
 
@@ -65,7 +67,7 @@ class NoFound extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const Text(
-              "NO FOUND",
+              "NO FOUND", // Mensaje de error
               style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold,
@@ -76,10 +78,10 @@ class NoFound extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(builder: (context) => HomeScreen()), // Ir a la pantalla de inicio
                 );
               },
-              child: const Icon(Icons.back_hand),
+              child: const Icon(Icons.back_hand), // Icono para volver atrás
             ),
           ],
         ),

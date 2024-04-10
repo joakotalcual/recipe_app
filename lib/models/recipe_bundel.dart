@@ -1,24 +1,24 @@
-
 import 'package:flutter/material.dart';
 
+// Clase RecipeBundle que representa un paquete de recetas
 class RecipeBundle {
-  final int chefs, recipes;
-  final String uid, title, description, imageSrc;
-  final Color color;
+  final int chefs, recipes; // Número de cocineros y recetas
+  final String uid, title, description, imageSrc; // Identificador único, título, descripción, fuente de imagen
+  final Color color; // Color del paquete
 
   RecipeBundle({
-    required this.uid,
-    required this.chefs,
-    required this.recipes,
-    required this.title,
-    required this.description,
-    required this.imageSrc,
-    required this.color
+    required this.uid, // Identificador único
+    required this.chefs, // Número de cocineros
+    required this.recipes, // Número de recetas
+    required this.title, // Título
+    required this.description, // Descripción
+    required this.imageSrc, // Fuente de imagen
+    required this.color // Color
   });
 
 }
 
-// List<RecipeBundle> recipeBundles = [
+// List<RecipeBundle> recipeBundles = [ // Lista de paquetes de recetas (actualmente comentada)
 //   RecipeBundle(
 //     id: 1,
 //     chefs: 16,
