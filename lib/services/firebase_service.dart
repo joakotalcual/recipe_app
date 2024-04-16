@@ -70,6 +70,10 @@ Future<void> updateRecipe(String uid, String newTitle, String newDescription, in
   });
 }
 
+Future<void> deleteRecipe(String uid) async {
+  await db.collection('recipe').doc(uid).delete();
+}
+
 // Función para analizar una cadena de color hexadecimal y devolver un objeto Color
 Color parseColor(String colorString) {
   // Obtener el valor entero del color hexadecimal (sin el prefijo '0x')

@@ -145,9 +145,12 @@ class _EditRecipeState extends State<EditRecipe> {
                           if(imagen == null){
                             return;
                           }
-                          setState(() {
+                          print(imagen.path);
+                          print(imagenToUpload);
+                          setState((){
                             imagenToUpload = File(imagen.path);
                           });
+                          print(imagenToUpload);
                         },
                         child: const Text("Seleccionar imagen"),
                       ),
@@ -247,7 +250,7 @@ class _EditRecipeState extends State<EditRecipe> {
           _description.isNotEmpty ||
           _numberCooks.isNotEmpty ||
           _numberRecipes.isNotEmpty) {
-        if(imagenToUpload!.path.contains('https://firebasestorage.googleapis.com/v0/b/recipeapp-cb290.appspot.com/o')){
+        if(imagenToUpload!.path.contains('https://firebasestorage.googleapis.com/v0/')){
           url = imagenToUpload!.path;
         }else{
           final uploaded = await uploadImage(imagenToUpload!);

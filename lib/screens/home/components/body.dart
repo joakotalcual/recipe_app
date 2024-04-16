@@ -16,6 +16,8 @@ class Body extends StatefulWidget {
 
 
 class _BodyState extends State<Body> {
+
+  double defaultSize = SizeConfig.defaultSize;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,17 +49,61 @@ class _BodyState extends State<Body> {
                           crossAxisSpacing: SizeConfig.orientation == Orientation.landscape ? SizeConfig.defaultSize * 1.5 : 0, // Espacio entre ejes cruzados
                           childAspectRatio: 1.6, // Relación de aspecto de los elementos
                         ),
-                        itemBuilder: (context, index) => RecipeBundelCard(
-                          // Constructor de elementos de la cuadrícula con la tarjeta de RecipeBundle
-                          recipeBundle: snapshot.data?[index], // Receta actual
-                          press: () async {
-                            await Navigator.push(context, MaterialPageRoute(builder: (context) => const EditRecipe(),
-                              settings: RouteSettings(
-                                arguments: snapshot.data?[index],// Pasando argumentos al widget Navegación a la pantalla de agregar recetas
-                              ),
-                            ));
-                            setState((){});
-                          }, // Acción al presionar la tarjeta
+                        itemBuilder: (context, index) => Dismissible(
+                          onDismissed: (direction) async {
+                            await deleteRecipe(snapshot.data![index].uid);
+                            setState((){
+                              snapshot.data?.removeAt(index);
+                            });
+                          },
+                          confirmDismiss: (direction) async{
+                            bool result = false;
+                            result = await showDialog(
+                              context: context,
+                            builder: (context){
+                              return AlertDialog(
+                                title: Text("Are you sure about eliminating the recipe? ${snapshot.data?[index].title}"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      return Navigator.pop(context, false);
+                                    },
+                                    child: const Text(
+                                      "Cancel",
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      return Navigator.pop(context, true);
+                                    },
+                                    child: const Text("Accept"),
+                                  ),
+                                ],
+                              );
+                            }
+                            );
+
+                            return result;
+                          },
+                          background: Container(
+                            color: Colors.red,
+                            child: const Icon(Icons.delete),
+                          ),
+                          direction: DismissDirection.startToEnd,
+                          key: Key(snapshot.data![index].uid),
+                          child: RecipeBundelCard(
+                            // Constructor de elementos de la cuadrícula con la tarjeta de RecipeBundle
+                            recipeBundle: snapshot.data?[index], // Receta actual
+                            press: () async {
+                              await Navigator.push(context, MaterialPageRoute(builder: (context) => const EditRecipe(),
+                                settings: RouteSettings(
+                                  arguments: snapshot.data?[index],// Pasando argumentos al widget Navegación a la pantalla de agregar recetas
+                                ),
+                              ));
+                              setState((){});
+                            }, // Acción al presionar la tarjeta
+                          ),
                         ),
                       ),
                     ),
