@@ -1,7 +1,7 @@
 // Importaciones de paquetes de Flutter
 import 'package:flutter/material.dart'; // Importación del paquete de Flutter para la interfaz de usuario
-import 'package:recipe_app/constants.dart'; // Importación del archivo de constantes
-import 'package:recipe_app/size_config.dart'; // Importación de la configuración de tamaño
+import 'package:recipe/constants.dart'; // Importación del archivo de constantes
+import 'package:recipe/size_config.dart'; // Importación de la configuración de tamaño
 
 // Clase StatefulWidget para las categorías
 class Categories extends StatefulWidget {

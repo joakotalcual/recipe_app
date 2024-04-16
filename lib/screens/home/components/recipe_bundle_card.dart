@@ -1,8 +1,8 @@
 // Importaciones de paquetes de Flutter
 import 'package:flutter/material.dart'; // Importación del paquete de Flutter para la interfaz de usuario
 import 'package:flutter_svg/svg.dart'; // Importación del paquete de SVG de Flutter
-import 'package:recipe_app/models/recipe_bundel.dart'; // Importación del modelo de paquete de recetas
-import 'package:recipe_app/size_config.dart'; // Importación de la configuración de tamaño
+import 'package:recipe/models/recipe_bundel.dart'; // Importación del modelo de paquete de recetas
+import 'package:recipe/size_config.dart'; // Importación de la configuración de tamaño
 
 // Clase StatelessWidget para la tarjeta de paquete de recetas
 class RecipeBundelCard extends StatelessWidget {
@@ -15,8 +15,6 @@ class RecipeBundelCard extends StatelessWidget {
   // Método de construcción de la interfaz de usuario
   @override
   Widget build(BuildContext context) {
-    print('ACA ES EL RECIPEBUNDEL CARD'); // Impresión de mensaje
-
     double defaultSize = SizeConfig.defaultSize; // Tamaño predeterminado del dispositivo
     if (recipeBundle == null) { // Comprobar si el paquete de recetas es nulo
       return const Center(
@@ -79,13 +77,47 @@ class RecipeBundelCard extends StatelessWidget {
               ),
             ),
             SizedBox(width: defaultSize * 0.5), // Espaciado entre elementos
-            AspectRatio(
-              // Relación de aspecto
-              aspectRatio: 0.71, // Relación de aspecto
-              child: Image.asset(
-                recipeBundle!.imageSrc, // Fuente de la imagen del paquete de recetas
-                fit: BoxFit.cover, // Ajuste de la imagen
-                alignment: Alignment.centerLeft, // Alineación de la imagen
+            AspectRatio( // Widget para mantener la relación de aspecto
+              aspectRatio: 0.71, // Relación de aspecto de la imagen
+              child: ClipRRect( // Widget para recortar la imagen con bordes redondeados
+                borderRadius: const BorderRadius.only( // Define los bordes redondeados en el lado derecho
+                  topRight: Radius.circular(20.0), // Radio de curvatura en la esquina superior derecha
+                  bottomRight: Radius.circular(20.0), // Radio de curvatura en la esquina inferior derecha
+                ),
+                child: Image.network( // Widget de imagen cargada desde una URL
+                  recipeBundle!.imageSrc, // URL de la imagen en línea
+                  fit: BoxFit.cover, // Ajuste de la imagen para cubrir el área disponible
+                  loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) { // Constructor de carga de imagen
+                    if (loadingProgress == null) { // Si la carga ha finalizado
+                      return child; // Retorna la imagen
+                    } else { // Si la carga está en progreso
+                      return Center( // Centra un indicador de progreso mientras se carga la imagen
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    }
+                  },
+                  errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) { // Constructor de error de carga de imagen
+                    return Tooltip( // Muestra un mensaje de tooltip en caso de error
+                      message: 'Failed to load image', // Mensaje del tooltip
+                      child: Center( // Centra un icono para indicar el error
+                        child: GestureDetector( // Widget para detectar gestos
+                          onTap: () { // Cuando se toca el icono de error
+                            ScaffoldMessenger.of(context).showSnackBar( // Muestra una barra de snack con un mensaje
+                              const SnackBar(
+                                content: Text('Failed to load image'), // Contenido del mensaje de error
+                              ),
+                            );
+                          },
+                          child: const Icon(Icons.error_outline), // Icono de error
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],

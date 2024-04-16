@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/screens/home/home_screen.dart';
-import 'package:recipe_app/screens/profile/profile_screen.dart';
+import 'package:recipe/screens/home/home_screen.dart';
+import 'package:recipe/screens/profile/profile_screen.dart';
 
 // Clase NavItem que representa un elemento de navegación en la barra de navegación inferior
 class NavItem {

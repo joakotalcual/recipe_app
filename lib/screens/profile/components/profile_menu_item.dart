@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 // Importaciones de archivos locales
-import 'package:recipe_app/constants.dart'; // Importación de constantes de la aplicación
-import 'package:recipe_app/size_config.dart'; // Importación de la configuración de tamaño
+import 'package:recipe/constants.dart'; // Importación de constantes de la aplicación
+import 'package:recipe/size_config.dart'; // Importación de la configuración de tamaño
 
 // Clase StatelessWidget para los elementos de menú en el perfil
 class ProfileMenuItem extends StatelessWidget {

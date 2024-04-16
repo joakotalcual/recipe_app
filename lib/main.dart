@@ -2,9 +2,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app/firebase_options.dart'; // Importación de opciones de Firebase
-import 'package:recipe_app/models/nav_item.dart'; // Importación del modelo de ítems de navegación
-import 'package:recipe_app/screens/home/home_screen.dart'; // Importación de la pantalla de inicio
+import 'package:recipe/firebase_options.dart'; // Importación de opciones de Firebase
+import 'package:recipe/models/nav_item.dart'; // Importación del modelo de ítems de navegación
+import 'package:recipe/screens/home/home_screen.dart'; // Importación de la pantalla de inicio
 
 void main() async {
   // Asegurarse de que Flutter esté inicializado

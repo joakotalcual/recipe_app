@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 
 // Importación de componentes y constantes necesarios
-import 'package:recipe_app/components/my_bottom_nav_bar.dart'; // Importación de la barra de navegación inferior personalizada
-import 'package:recipe_app/constants.dart'; // Importación de constantes de la aplicación
-import 'package:recipe_app/screens/profile/components/body.dart'; // Importación del cuerpo de la pantalla de perfil
-import 'package:recipe_app/size_config.dart'; // Importación de la configuración de tamaño
+import 'package:recipe/components/my_bottom_nav_bar.dart'; // Importación de la barra de navegación inferior personalizada
+import 'package:recipe/constants.dart'; // Importación de constantes de la aplicación
+import 'package:recipe/screens/profile/components/body.dart'; // Importación del cuerpo de la pantalla de perfil
+import 'package:recipe/size_config.dart'; // Importación de la configuración de tamaño
 
 // Clase StatelessWidget para la pantalla de perfil
 class ProfileScreen extends StatelessWidget {
@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
       // Color de fondo de la AppBar
       backgroundColor: kPrimaryColor,
       // Eliminar el botón de retroceso
-      leading: SizedBox(),
+      leading: const SizedBox(),
       // Centrar el título en la AppBar
       centerTitle: true,
       // Título de la AppBar

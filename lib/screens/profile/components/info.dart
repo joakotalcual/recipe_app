@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Importaciones de archivos locales
-import 'package:recipe_app/constants.dart'; // Importación de constantes de la aplicación
-import 'package:recipe_app/size_config.dart'; // Importación de la configuración de tamaño
+import 'package:recipe/constants.dart'; // Importación de constantes de la aplicación
+import 'package:recipe/size_config.dart'; // Importación de la configuración de tamaño
 
 // Clase StatelessWidget para mostrar información del usuario
 class Info extends StatelessWidget {
@@ -102,6 +102,6 @@ class CustomShape extends CustomClipper<Path>{
   // Método para indicar si se debe volver a recortar
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper){
-    throw true; // Señal de que debe volver a recortar
+    return true; // Señal de que debe volver a recortar
   }
 }

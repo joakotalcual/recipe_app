@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:recipe_app/constants.dart';
-import 'package:recipe_app/models/nav_item.dart';
-import 'package:recipe_app/size_config.dart';
+import 'package:recipe/constants.dart';
+import 'package:recipe/models/nav_item.dart';
+import 'package:recipe/size_config.dart';
 
 // Barra de navegación inferior personalizada
 class MyBottomNavBar extends StatelessWidget {

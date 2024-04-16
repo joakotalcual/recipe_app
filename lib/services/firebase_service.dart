@@ -1,11 +1,9 @@
 // Importación del paquete de Firestore para interactuar con la base de datos
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-// Importación del paquete de Flutter para los widgets de Material Design
 import 'package:flutter/material.dart';
 
 // Importación del modelo RecipeBundle
-import 'package:recipe_app/models/recipe_bundel.dart';
+import 'package:recipe/models/recipe_bundel.dart';
 
 // Instancia de Firestore
 FirebaseFirestore db = FirebaseFirestore.instance;
@@ -28,20 +26,19 @@ Future<List<RecipeBundle>> getRecipes() async {
       Map<String, dynamic> data = document.data() as Map<String, dynamic>;
       // Crear una instancia de RecipeBundle con los datos del documento
       RecipeBundle recipe = RecipeBundle(
-        uid: document.id.toString(),
-        chefs: int.tryParse(data['chefs'].toString()) ?? 0,
-        recipes: int.tryParse(data['recipes'].toString()) ?? 0,
-        title: data['title'].toString(),
-        description: data['description'].toString(),
-        imageSrc: data['imageSrc'].toString(),
-        color: parseColor(data['color'].toString()),
+        uid: document.id, //obtiene id del documento
+        chefs: int.tryParse(data['chefs'].toString()) ?? 0, //Obtiene el numero de cocineros
+        recipes: int.tryParse(data['recipes'].toString()) ?? 0, //Obtiene el numero de recetas
+        title: data['title'].toString(), //Obtiene el titulo de la receta
+        description: data['description'].toString(),//Obtiene la descripcion de la receta
+        imageSrc: data['imageSrc'].toString(),//Obtiene la ruta de image
+        color: parseColor(data['color']),//Parsea el hexadecimal a un Color de material
       );
       // Agregar la receta a la lista de recetas
       recipes.add(recipe);
     });
-
     // Retornar la lista de recetas después de una demora simulada de 2 segundos
-    await Future.delayed(Duration(seconds: 2));
+    //await Future.delayed( const Duration(seconds: 2));
     return recipes;
   } catch (e) {
     // Manejar cualquier error que ocurra al obtener las recetas
@@ -50,7 +47,7 @@ Future<List<RecipeBundle>> getRecipes() async {
 }
 
 // Función asíncrona para agregar una nueva receta a la base de datos
-Future<void> addPeople(title, description, numberCooks, numberRecipes, image, color) async {
+Future<void> addRecipe(String title, String description, int numberCooks, int numberRecipes, String image, String color) async {
   // Añadir la nueva receta a la colección 'recipe' en Firestore
   await db.collection('recipe').add({
     "chefs": numberCooks,
@@ -59,6 +56,17 @@ Future<void> addPeople(title, description, numberCooks, numberRecipes, image, co
     "imageSrc": image,
     "recipes": numberRecipes,
     "title": title
+  });
+}
+
+Future<void> updateRecipe(String uid, String newTitle, String newDescription, int newNumberCooks, int newNumberRecipes, String newImage, String newColor) async {
+  await db.collection('recipe').doc(uid).update({
+    "chefs": newNumberCooks,
+    "color": newColor,
+    "description": newDescription,
+    "imageSrc": newImage,
+    "recipes": newNumberRecipes,
+    "title": newTitle
   });
 }
 
